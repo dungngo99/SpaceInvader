@@ -5,7 +5,8 @@ Template created with love by: Charles Lee (Founder at CoderSchool)
   
 This is a simple Canvas-based game that requires a solid understanding of the principles of JavaScript programming to customize. 
 
-# Link to production: https://coderschool-spaceinvader.netlify.app
+# Link to production: 
+https://coderschool-spaceinvader.netlify.app
 
 ## Required User Stories
 - [x] I have at least three code reviews from others.
