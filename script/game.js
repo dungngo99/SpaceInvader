@@ -46,6 +46,10 @@ const explosionSprite = new Image();
 explosionSprite.src = 'images/explosion.png'
 
 //Initialize all audios
+const spaceInvaderAudio = new Audio();
+spaceInvaderAudio.src = 'audios/InvaderSound.wav'
+spaceInvaderAudio.loop = true
+
 const heroShootAudio = new Audio();
 heroShootAudio.src = 'audios/shoot.wav'
 
@@ -67,11 +71,6 @@ gameoverAudio.src = 'audios/gameover.wav'
 const winAudio = new Audio();
 winAudio.src = 'audios/win.wav'
 
-const spaceInvaderAudio = new Audio();
-spaceInvaderAudio.src = 'audios/InvaderSound.wav'
-spaceInvaderAudio.loop = true
-spaceInvaderAudio.play()
-
 //Record frames and other global variables
 let frames = 0
 const SECONDS_PER_ROUND = 30;
@@ -91,9 +90,14 @@ const state = {
 
 //CLICK: Click objects
 const click = {
+  is_clicked: false,
   //Add event listener
   eventListen: function () {
     addEventListener('click', function (evt) {
+      if (!this.is_clicked){
+        spaceInvaderAudio.play()
+        is_clicked = true
+      }
       // Find the coordinates (x,y) of user's click with respect to the (x,y) of canvas
       let rect = cvs.getBoundingClientRect()
       clickX = evt.clientX;
