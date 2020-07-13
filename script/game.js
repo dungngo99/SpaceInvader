@@ -788,7 +788,8 @@ const updateTable = {
     bulletsMonster.period = 120;
     bulletsMonster.numBullets = 5;
     bulletsMonster.speed = 2;
-    hero.heroIndex = 0
+    hero.heroIndex = 0;
+    bulletsHero.speed = 5;
 
     //Reset all values in UI Form
     document.getElementById('dn-name-').value = ''
