@@ -1,0 +1,93 @@
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+.dn-infor-section{
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dn-section{
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('https://fuelyourcuriosity.me/wp-content/uploads/2017/11/d099fbe1334992232264f479a516983e.jpg');
+}
+
+.dn-game-section{
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.myCvs{
+  margin: 0px;
+  padding: 0px;
+}
+
+.dn-h1{
+  margin-bottom: 0px;
+}
+
+.dn-glad{
+  margin-bottom: 0px;
+}
+
+.dn-direction-icon{
+  content: url('https://cdn4.iconfinder.com/data/icons/selection-cursors-solid-style/24/direction-button--512.png');
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+}
+
+.form-check{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dn-table-wrapper{
+  width: 70%;
+  margin: 0px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dn-table tbody{
+  display: block;
+  height: 100px;
+  overflow-y: scroll;
+}
+
+.dn-table tr{
+  width:100%;
+  display: flex;
+}
+
+.dn-table td, .dn-table th{
+  flex-basis:100%;
+  display: block;
+  text-align:left;
+}
+
+.dn-effect{
+  margin: 10px;
+}
+
+.dn-shift-icon{
+  content: url('/images/shift.jpg');
+  background-size: cover;
+  width: 45px;
+  height: 30px;
+}
