@@ -12,8 +12,20 @@ ctx.fillStyle = 'red'
 ctx.textAlign = 'center'
 
 //Initialize all images
-const heroImg = new Image();
-heroImg.src = 'images/aircraft3.png';
+const heroImg1 = new Image();
+heroImg1.src = 'images/craft1.png';
+
+const heroImg2 = new Image();
+heroImg2.src = 'images/craft2.png'
+
+const heroImg3 = new Image();
+heroImg3.src = 'images/craft3.png'
+
+const heroImg4 = new Image();
+heroImg4.src = 'images/craft4.png'
+
+const heroImg5 = new Image();
+heroImg5.src = 'images/craft5.png'
 
 const monsterImg1 = new Image();
 monsterImg1.src = 'images/monster1.png';
@@ -77,6 +89,7 @@ const SECONDS_PER_ROUND = 30;
 const FRAME_SIZE = 700;
 let elapsedTime = 0;
 let keysDown = { 16: false, 38: false, 40: false, 37: false, 39: false };
+const INFOR = { 'name': 'NoName', 'level': 'Easy', 'spaceship': 'Rhoder','speed':5,'time':5,'result':'Success'}
 
 /*
 This object keep track of the current state of the game. There are 3 states: getReady, playing, and game-over
@@ -152,9 +165,15 @@ const bgs = {
       ctx.drawImage(bgImg, 0, 0, this.w, this.h);
       ctx.drawImage(headImg, this.w / 2 - this.header_size / 2, this.h / 2 - this.header_size / 2, this.header_size, this.header_size)
       this.reset()
+
+      //When user is in gerReady state, the submit button is enabled
+      document.getElementById('dn-submit').disabled = false
     }
 
     else if (state.current === 1) {             //If the user is in playing state, keep moving frames to make everything seems moving
+      //When user is in playing state, the submit button is disabled
+      document.getElementById('dn-submit').disabled = true
+      
       // Start the timer - Only call once
       if (!this.is_called) {
         startTime = Date.now();
@@ -197,6 +216,9 @@ const bgs = {
       ctx.drawImage(gameoverImg, cvs.width / 2 - this.header_size / 2, cvs.height / 2 - this.header_size / 2 + 50, this.header_size, this.header_size)
       ctx.fillText('Click to restart', cvs.width / 2, cvs.height / 2 - 50);
       this.reset();
+
+      //When user is in Game-over state, the submit button is enabled
+      document.getElementById('dn-submit').disabled = false
     }
   },
 
@@ -217,10 +239,12 @@ const hero = {
   h: 40,                //height of hero object
   numLives: 5,          //Total number of lives a hero can have
   lives: this.numLives, //Keep track of number of lives left
+  heroImgs: [heroImg1, heroImg2, heroImg3, heroImg4, heroImg5],
+  heroIndex: 0,
 
-  //Draw the hero object on Canvas after updating it
+  //Draw a hero object from an array of heros on Canvas after updating it
   draw: function () {
-    ctx.drawImage(heroImg, this.x, this.y, this.w, this.h);
+    ctx.drawImage(this.heroImgs[this.heroIndex], this.x, this.y, this.w, this.h);
   },
 
   //Update the hero object after drawing it
@@ -262,6 +286,7 @@ const hero = {
           //Hero lost 1 life and play audio effect
           this.lives -= 1;
           heroKilledAudio.play();
+
         }
       }
 
@@ -289,6 +314,9 @@ const hero = {
       if (this.lives === 0) {
         state.current = state.over
         gameoverAudio.play()
+
+        //Update the UI Table when the game is over
+        updateTable.update('Fail', )
       }
 
     } else {                                                    //If the user is in game-over state, do nothing
@@ -416,6 +444,7 @@ const monsters = {
       if (isWin) {
         state.current = state.over;
         winAudio.play();
+        updateTable.update('Success');
         return;
       }
 
@@ -625,6 +654,115 @@ const audio = {
 }
 audio.setupDefault()
 
+//SUBMIT: An object submit
+const submit = {
+  //Store the user's current submitted information
+  submitForm: null,
+
+  //submit() has an EventListener for submit button
+  submit: function(){
+    //If the user does not click submit, the program always use default settings
+    document.getElementById('dn-submit').addEventListener('click', function(evt){
+      //Display to the user that his/her information has been stored in the database
+      document.getElementById('dn-information-text').innerText = 'Your information has been submitted.'
+      this.submitForm = INFOR;
+
+      //Get all values from UI Form
+      let name = document.getElementById('dn-name-').value
+      let level = document.getElementById('dn-level').value
+      let speed = document.getElementById('dn-speed').value
+      let ship = document.getElementById('dn-spaceship').value
+
+      //If the user don't enter name but click submit, use default name
+      if (name != ''){
+        this.submitForm['name'] = name
+      }
+      
+      //Update the new information to submitForm array
+      this.submitForm['level'] = level
+      this.submitForm['speed'] = speed
+      this.submitForm['spaceship'] = ship
+
+      //Update heor's spped
+      bulletsHero.speed = speed
+
+      //Update spaceship
+      switch(ship){
+        case 'Rhoder':
+          hero.heroIndex = 0
+          break;
+
+        case 'White monster':
+          hero.heroIndex = 1
+          break;
+
+        case 'Captain black':
+          hero.heroIndex = 2
+          break;
+
+        case 'Grey Monster':
+          hero.heroIndex = 3
+          break;
+
+        case 'Terminator':
+          hero.heroIndex = 4
+          break
+      }
+
+      //Update level for the current game
+      switch (level){
+        case 'Easy':
+          bulletsMonster.period = 120;
+          bulletsMonster.numBullets = 5;
+          bulletsMonster.speed = 2;
+          break;
+
+        case 'Medium':
+          bulletsMonster.period = 70;
+          bulletsMonster.numBullets = 7;
+          bulletsMonster.speed = 5;
+          break;
+
+        case 'Hard':
+          bulletsMonster.period = 50;
+          bulletsMonster.numBullets = 10;
+          bulletsMonster.speed = 10;
+          break;
+      }
+    })
+  }
+}
+submit.submit()
+
+//UPDATETABLE: an object to update information in UI Table after game is over
+const updateTable = {
+  update: function(result){
+    //If the user did not submit form before playing, use default settings
+    if (submit.submitForm === null){
+      submit.submitForm = INFOR
+    }
+
+    //Update result and time after a game is over
+    submit.submitForm['result'] = result
+    submit.submitForm['time'] = elapsedTime
+
+    //Get the table and add one row at the end
+    let table = document.getElementById('myTable')
+    let row = table.insertRow(-1)
+    let i = 0
+
+    //Display information to the table
+    for (key in submit.submitForm){
+      let cell = row.insertCell(i)
+      cell.innerText = submit.submitForm[key]
+      i++
+    }
+
+    //Reset the form to be null and reset information text in UI
+    submit.submitForm = null
+    document.getElementById('dn-information-text').innerText = 'Please submit your information...'
+  }
+}
 
 //UPDATE: Call update functions of all objects
 function update() {
@@ -644,8 +782,6 @@ function draw() {
   bulletsHero.draw();
   bulletsMonster.draw();
 };
-
-
 
 //LOOP: The main game loop. Most every game will have two distinct parts: draw() and update()
 function loop() {

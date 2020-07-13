@@ -40,31 +40,32 @@
 
           <div class='dn-form-comp'>
             <label>Choose level: </label>
-            <select name='level' id='level' required>
-              <option value='level1'>Easy</option>
-              <option value='level2'>Medium</option>
-              <option value='level3'>Hard</option>
+            <select name='level' id='dn-level' required>
+              <option value='Easy'>Easy</option>
+              <option value='Medium'>Medium</option>
+              <option value='Hard'>Hard</option>
             </select>
           </div>
 
           <div>
             <label>Choose speed (1-10):</label>
-            <input type="range" min="1" max="10" value="5" class="dn-range-slider" id="myRange">
+            <input type="range" min="1" max="10" value="5" class="dn-range-slider" id="dn-speed">
           </div>
 
           <div class='dn-form-comp'>
             <label>Choose spaceship: </label>
-            <select name='ship' id='spaceship' required>
-              <option value='ship1'>Rhoder</option>
-              <option value='ship2'>White monster</option>
-              <option value='ship3'>Captain black</option>
-              <option value='ship4'>Grey monster</option>
+            <select name='ship' id='dn-spaceship' required>
+              <option value='Rhoder'>Rhoder</option>
+              <option value='White monster'>White monster</option>
+              <option value='Captain black'>Captain black</option>
+              <option value='Grey Monster'>Grey monster</option>
+              <option value='Terminator'>Terminator</option>
             </select>
           </div>
 
           <button class='btn btn-dark btn-sm btn-outline-light' id='dn-submit'
             style='margin: 10px 10px'>Submit</button>
-          <span id='dn-information'>Please submit your information...</span>
+          <span id='dn-information-text'>Please submit your information...</span>
         </div>
 
         <div class='dn-effect'>
@@ -74,12 +75,15 @@
       </div>
 
       <div class='dn-table-wrapper'>
+        <p style='margin:0px; padding:0px'>Scroll down to see result!</p><br>
         <table class="table thead-light table-borderless dn-table table-sm scrollTable" id='myTable' border="0" cellpadding="0"
           cellspacing="0" width="100%">
           <thead class="fixedHeader" style='color:white'>
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Level</th>
+              <th scope="col">Spaceship</th>
+              <th scope="col">Speed</th>
               <th scope="col">Time(s)</th>
               <th scope="col">Result</th>
             </tr>
@@ -87,7 +91,9 @@
           <tbody class="scrollContent" style='color:white'>
             <tr>
               <td>Mark</td>
-              <td>1</td>
+              <td>Easy</td>
+              <td>Rhoder</td>
+              <td>5</td>
               <td>25</td>
               <td>Success</td>
             </tr>
