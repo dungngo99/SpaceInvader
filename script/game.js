@@ -46,11 +46,6 @@ const explosionSprite = new Image();
 explosionSprite.src = 'images/explosion.png'
 
 //Initialize all audios
-const spaceInvaderAudio = new Audio();
-spaceInvaderAudio.src = 'audios/InvaderSound.wav'
-spaceInvaderAudio.loop = true
-spaceInvaderAudio.play()
-
 const heroShootAudio = new Audio();
 heroShootAudio.src = 'audios/shoot.wav'
 
@@ -71,6 +66,11 @@ gameoverAudio.src = 'audios/gameover.wav'
 
 const winAudio = new Audio();
 winAudio.src = 'audios/win.wav'
+
+const spaceInvaderAudio = new Audio();
+spaceInvaderAudio.src = 'audios/InvaderSound.wav'
+spaceInvaderAudio.loop = true
+spaceInvaderAudio.play()
 
 //Record frames and other global variables
 let frames = 0
