@@ -316,7 +316,7 @@ const hero = {
         gameoverAudio.play()
 
         //Update the UI Table when the game is over
-        updateTable.update('Fail', )
+        updateTable.update('Fail')
       }
 
     } else {                                                    //If the user is in game-over state, do nothing
@@ -646,7 +646,7 @@ const audio = {
     heroShootAudio.volume = 0.5
     invaderKilledAudio.volume = 0.5
     invaderShootAudio.volume = 0.5
-    heroKilledAudio.volume = 0.5
+    heroKilledAudio.volume = 1
     reloadAudio.volume = 1
     gameoverAudio.volume = 1
     winAudio.volume = 1
