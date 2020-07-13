@@ -643,16 +643,37 @@ const audio = {
   //Set up volume for all sound effects
   setupDefault: function () {
     spaceInvaderAudio.volume = 0.1
+    heroShootAudio.volume = 0.5
     invaderKilledAudio.volume = 0.5
     invaderShootAudio.volume = 0.5
-    heroShootAudio.volume = 0.5
+    heroKilledAudio.src = 0.5
+    reloadAudio.volume = 1
+    gameoverAudio.volume = 1
+    winAudio.volume = 1
   },
 
-  //Update all the sound when user enter customed values
-  update: function () {
-  }
+  //Set the buttons to actively listen to user's clicks
+  setActive: function () {
+    //Turn on all sound effects to default value
+    document.getElementById('dn-turn-on').addEventListener('click', function (evt) {
+      audio.setupDefault()
+    })
+
+    //Turn off all sound effects to default value
+    document.getElementById('dn-turn-off').addEventListener('click', function(evt){
+      spaceInvaderAudio.volume = 0
+      heroShootAudio.volume = 0
+      invaderKilledAudio.volume = 0
+      invaderShootAudio.volume = 0
+      heroKilledAudio.src = 0
+      reloadAudio.volume = 0
+      gameoverAudio.volume = 0
+      winAudio.volume = 0
+    })
+  },
 }
 audio.setupDefault()
+audio.setActive()
 
 //SUBMIT: An object submit
 const submit = {
@@ -757,6 +778,23 @@ const updateTable = {
       cell.innerText = submit.submitForm[key]
       i++
     }
+
+    //Reset all variables user changed so far to default values
+    this.reset();
+  },
+
+  reset: function(){
+    //Reset all setings to default values
+    bulletsMonster.period = 120;
+    bulletsMonster.numBullets = 5;
+    bulletsMonster.speed = 2;
+    hero.heroIndex = 0
+
+    //Reset all values in UI Form
+    document.getElementById('dn-name-').value = ''
+    document.getElementById('dn-level').value = 'Easy'
+    document.getElementById('dn-speed').value = 5
+    document.getElementById('dn-spaceship').value = 'Rhoder'
 
     //Reset the form to be null and reset information text in UI
     submit.submitForm = null
