@@ -40,7 +40,7 @@ const monsterImg4 = new Image();
 monsterImg4.src = 'images/monster4.png';
 
 const bgImg = new Image();
-bgImg.src = "https://www.astrobio.net/images/galleryimages_images/Gallery_Image_10257.jpg";
+bgImg.src = "images/bg_img.jpg";
 
 const bulletImg = new Image();
 bulletImg.src = 'images/bullet.png';
