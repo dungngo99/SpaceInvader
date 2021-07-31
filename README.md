@@ -1,4 +1,4 @@
-# [Space Invader](https://github.com/dungngo99/space-invader) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)]()
+# [Space Invader](https://github.com/dungngo99/space-invader) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dungngo99/space-invader/blob/master/LICENSE)
 
 A traditional canvas-based game.
 
@@ -6,7 +6,7 @@ A traditional canvas-based game.
 
 ## Demo
 
-![Alt Text]()
+![Alt Text](https://media.giphy.com/media/2Kn60TlM5dSGWkc0Zt/giphy.gif)
 
 ## 📚 Table of contents
 
