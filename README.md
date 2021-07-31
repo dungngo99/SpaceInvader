@@ -42,4 +42,4 @@ A traditional canvas-based game.
 
 ## 📄 License
 
-Currency exchange converter is [MIT licensed](./LICENSE).
+Space Invader is [MIT licensed](./LICENSE).
